@@ -14,9 +14,9 @@ O trabalho final tem como tema o desenvolvimento de uma plataforma de empregabil
 ## 2. Escopo
 Este projeto terá as seguintes funcionalidades:
 
-* Frontend:
+* * Frontend:
 
-* * Páginas de Cadastro (Registro) e Login com distinção de perfil (Empresa ou Freelancer).
+* Páginas de Cadastro (Registro) e Login com distinção de perfil (Empresa ou Freelancer).
 
 Perfil Empresa:
 
