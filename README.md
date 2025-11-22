@@ -16,7 +16,7 @@ Este projeto terá as seguintes funcionalidades:
 
 * Frontend:
 
-Páginas de Cadastro (Registro) e Login com distinção de perfil (Empresa ou Freelancer).
+* * Páginas de Cadastro (Registro) e Login com distinção de perfil (Empresa ou Freelancer).
 
 Perfil Empresa:
 
