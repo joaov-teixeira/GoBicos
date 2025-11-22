@@ -14,63 +14,62 @@ O trabalho final tem como tema o desenvolvimento de uma plataforma de empregabil
 ## 2. Escopo
 Este projeto terá as seguintes funcionalidades:
 
-* * Frontend:
+# Frontend:
 
 * Páginas de Cadastro (Registro) e Login com distinção de perfil (Empresa ou Freelancer).
 
-Perfil Empresa:
+* Perfil Empresa:
 
-Dashboard para gerenciamento de vagas criadas.
+* Dashboard para gerenciamento de vagas criadas.
 
-Formulário para criação de novas vagas (título, valor, data, requisitos).
+* Formulário para criação de novas vagas (título, valor, data, requisitos).
 
-Visualização de lista de candidatos por vaga, com opção de "Aceitar" ou "Rejeitar".
+* Visualização de lista de candidatos por vaga, com opção de "Aceitar" ou "Rejeitar".
 
-Perfil Freelancer:
+* Perfil Freelancer:
 
-Feed principal com listagem de vagas disponíveis e filtros (por valor ou data).
+* Feed principal com listagem de vagas disponíveis e filtros (por valor ou data).
 
-Página de "Meus Bicos", exibindo o status das candidaturas (Pendente, Aprovado, Recusado).
+* Página de "Meus Bicos", exibindo o status das candidaturas (Pendente, Aprovado, Recusado).
 
-Botão de ação rápida "Candidatar-se".
+* Botão de ação rápida "Candidatar-se".
 
-Gerenciamento de estado global para persistência do usuário logado.
+* Gerenciamento de estado global para persistência do usuário logado.
 
-* Backend (API):
+# Backend (API):
 
-Endpoints de autenticação (Registro, Login, Logout) com emissão de tokens.
+* Endpoints de autenticação (Registro, Login, Logout) com emissão de tokens.
 
-Middlewares para proteção de rotas (garantir que apenas Empresas possam criar vagas).
+* Middlewares para proteção de rotas (garantir que apenas Empresas possam criar vagas).
 
-Endpoints CRUD para Vagas.
+* Endpoints CRUD para Vagas.
 
-Endpoint específico para candidatura que cria o vínculo entre usuário e vaga.
+* Endpoint específico para candidatura que cria o vínculo entre usuário e vaga.
 
-Lógica de negócios para impedir candidaturas duplicadas ou em vagas já fechadas.
+* Lógica de negócios para impedir candidaturas duplicadas ou em vagas já fechadas.
 
-Retorno de dados formatados em JSON para consumo do frontend.
+* Retorno de dados formatados em JSON para consumo do frontend.
 
-Banco de Dados:
+# Banco de Dados:
 
-Tabela users: Armazena dados comuns e o tipo de perfil (role).
+* Tabela users: Armazena dados comuns e o tipo de perfil (role).
 
-Tabela jobs: Armazena as vagas (título, descrição, valor, data, status, id_empresa).
+* Tabela jobs: Armazena as vagas (título, descrição, valor, data, status, id_empresa).
 
-Tabela job_applications: Tabela pivô para ligar freelancers a vagas, contendo campos de controle como status (pendente/aprovado) e created_at.
+* Tabela job_applications: Tabela pivô para ligar freelancers a vagas, contendo campos de controle como status (pendente/aprovado) e created_at.
 
-O banco de dados será pré-populado (via seeding) com usuários e vagas fictícias para fins de teste e apresentação.
+* O banco de dados será pré-populado (via seeding) com usuários e vagas fictícias para fins de teste e apresentação.
 
 ## 3. Restrições
 Neste trabalho não serão considerados:
 
-Processamento de pagamentos dentro da plataforma (o pagamento do bico é externo).
+* Processamento de pagamentos dentro da plataforma (o pagamento do bico é externo).
 
-Chat em tempo real entre empresa e freelancer.
+* Chat em tempo real entre empresa e freelancer.
 
-Sistema de avaliação/review de usuários (estrelas).
+* Sistema de avaliação/review de usuários (estrelas).
 
-Versão mobile nativa (apenas responsividade web).
+* Versão mobile nativa (apenas responsividade web).
 
 ## 4. Protótipo
-Os protótipos de interface estão sendo desenvolvidos na ferramenta Figma:
-https://www.figma.com/design/qHSOjQivQy6gsxSfBu6w3J/GoBicos-Kit-Design?node-id=0-1&t=UzQwN40RYpEiuRwg-1
+### Os protótipos de interface estão sendo desenvolvidos na ferramenta Figma: https://www.figma.com/design/qHSOjQivQy6gsxSfBu6w3J/GoBicos-Kit-Design?node-id=0-1&t=UzQwN40RYpEiuRwg-1
