@@ -1,20 +1,20 @@
-# GoBicos
+## GoBicos
 Plataforma digital que simplifica a contratação de serviços pontuais ("bicos"), conectando estabelecimentos a prestadores de serviço de forma ágil.
 
-# CSI606-SISTEMAS-WEB-1-2025-01 - Proposta de Trabalho Final
+## CSI606-SISTEMAS-WEB-1-2025-01 - Proposta de Trabalho Final
 Discente: João Victor Teixeira Pereira
 Matrícula: 22.1.8052
 
-0. Resumo
+## 0. Resumo
 Este trabalho propõe o desenvolvimento de um sistema web, "GoBicos", uma aplicação web full-stack projetada para otimizar o mercado informal de trabalhos pontuais. O sistema contará com autenticação de usuários e múltiplos perfis de acesso (Empresas e Freelancers), visando centralizar ofertas que hoje estão dispersas. A funcionalidade principal permitirá que stakeholders (donos de bares, restaurantes…etc) publiquem vagas de curta duração e que estudantes ou freelancers se candidatem de forma ágil. O sistema gerenciará o ciclo de vida da vaga, desde a publicação até o preenchimento, permitindo o cruzamento de dados entre a oferta e a demanda. 
 
-1. Tema
+## 1. Tema
 O trabalho final tem como tema o desenvolvimento de uma plataforma de empregabilidade focada em trabalhos informais temporários ("bicos"), incluindo autenticação de usuários com diferenciação de permissões, frontend, backend e um banco de dados relacional (PostgreSQL). O foco é aplicar conceitos de modelagem de dados complexa (relacionamentos N:N entre candidatos e vagas), gestão de estado no frontend e construção de APIs seguras.
 
-2. Escopo
+## 2. Escopo
 Este projeto terá as seguintes funcionalidades:
 
-Frontend:
+* Frontend:
 
 Páginas de Cadastro (Registro) e Login com distinção de perfil (Empresa ou Freelancer).
 
@@ -36,7 +36,7 @@ Botão de ação rápida "Candidatar-se".
 
 Gerenciamento de estado global para persistência do usuário logado.
 
-Backend (API):
+* Backend (API):
 
 Endpoints de autenticação (Registro, Login, Logout) com emissão de tokens.
 
@@ -60,7 +60,7 @@ Tabela job_applications: Tabela pivô para ligar freelancers a vagas, contendo c
 
 O banco de dados será pré-populado (via seeding) com usuários e vagas fictícias para fins de teste e apresentação.
 
-3. Restrições
+## 3. Restrições
 Neste trabalho não serão considerados:
 
 Processamento de pagamentos dentro da plataforma (o pagamento do bico é externo).
@@ -71,6 +71,6 @@ Sistema de avaliação/review de usuários (estrelas).
 
 Versão mobile nativa (apenas responsividade web).
 
-4. Protótipo
+## 4. Protótipo
 Os protótipos de interface estão sendo desenvolvidos na ferramenta Figma:
 https://www.figma.com/design/qHSOjQivQy6gsxSfBu6w3J/GoBicos-Kit-Design?node-id=0-1&t=UzQwN40RYpEiuRwg-1
