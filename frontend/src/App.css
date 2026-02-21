@@ -1,0 +1,866 @@
+/* =========================================
+   1. RESET BÁSICO E CORES GERAIS
+   ========================================= */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+body, html, #root {
+  min-height: 100vh;
+  width: 100vw;
+  background-color: #0f172a;
+  color: #f8fafc;
+}
+
+/* =========================================
+   2. TELA DE LOGIN
+   ========================================= */
+.login-container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.login-box {
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.logo {
+  font-size: 2.2rem;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  font-size: 0.95rem;
+  color: #94a3b8;
+  margin-bottom: 40px;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  font-size: 0.85rem;
+}
+
+.remember-me {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #cbd5e1;
+  cursor: pointer;
+}
+
+.forgot-password {
+  color: #f97316;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.btn-primary {
+  width: 100%;
+  padding: 16px;
+  border-radius: 50px;
+  border: none;
+  background-color: #f97316;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin-bottom: 24px;
+}
+
+.btn-primary:hover {
+  background-color: #ea580c;
+}
+
+.signup-link {
+  font-size: 0.85rem;
+  color: #94a3b8;
+}
+
+.signup-link a {
+  color: #f97316;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+/* =========================================
+   3. INPUTS PADRÕES (USADOS EM TODAS AS TELAS)
+   ========================================= */
+.input-group {
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.input-group input,
+.input-group textarea {
+  width: 100%;
+  padding: 16px 20px;
+  border: none;
+  background-color: #334155;
+  color: white;
+  font-size: 1rem;
+  outline: none;
+  transition: box-shadow 0.2s;
+  border-radius: 15px; /* Arredondado padrão para formulários */
+}
+
+.input-group input[type="email"],
+.input-group input[type="password"] {
+  border-radius: 50px; /* Formato de pílula apenas no login */
+}
+
+.input-group input:focus,
+.input-group textarea:focus {
+  box-shadow: 0 0 0 2px #f97316; 
+}
+
+/* =========================================
+   4. DASHBOARD E FORMULÁRIO DE NOVA VAGA
+   ========================================= */
+.dashboard-layout {
+  width: 100vw;
+  min-height: 100vh;
+  background-color: #0f172a;
+  color: #f8fafc;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+}
+
+.navbar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background-color: #0f172a;
+  border-bottom: 1px solid #1e293b;
+}
+
+.logo-nav {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.avatar {
+  background-color: #f97316;
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.dashboard-content {
+  width: 100%;
+  max-width: 1100px; 
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn-nova-vaga {
+  background-color: #f97316;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 50px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-nova-vaga:hover {
+  background-color: #ea580c;
+}
+
+.btn-voltar {
+  background: transparent;
+  color: #94a3b8;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: 0.2s;
+}
+
+.btn-voltar:hover {
+  color: #f97316;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.stat-card {
+  background-color: #1e293b;
+  padding: 24px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.stat-card span {
+  color: #94a3b8;
+  font-size: 0.85rem;
+}
+
+.stat-card h3 {
+  font-size: 2rem;
+  color: white;
+  margin: 0;
+}
+
+.table-container {
+  background-color: #1e293b;
+  padding: 30px;
+  border-radius: 16px;
+  width: 100%;
+}
+
+.vagas-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  margin-top: 15px;
+}
+
+.vagas-table th {
+  color: #94a3b8;
+  font-size: 0.85rem;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #334155;
+}
+
+.vagas-table td {
+  padding: 20px 0;
+  border-bottom: 1px solid #334155;
+  font-size: 0.95rem;
+}
+
+.badge {
+  padding: 6px 12px;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.badge-aberta {
+  background-color: rgba(34, 197, 94, 0.1);
+  color: #22c55e;
+  border: 1px solid #22c55e;
+}
+
+.valor-texto {
+  color: #f97316;
+  font-weight: bold;
+}
+/* Estilo para o nome da empresa no header */
+.user-profile-pill {
+  background-color: #f97316; /* Fundo laranja */
+  color: white; /* Texto branco */
+  padding: 10px 20px; /* Espaçamento interno */
+  border-radius: 50px; /* Bordas arredondadas (pílula) */
+  font-weight: bold;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  cursor: pointer; /* Muda o cursor para indicar que é clicável (futuramente para menu de logout) */
+  transition: background-color 0.2s;
+}
+
+.user-profile-pill:hover {
+   background-color: #ea580c; /* Laranja um pouco mais escuro ao passar o mouse */
+}
+/* =========================================
+   5. JOB FEED (Visão do Freelancer)
+   ========================================= */
+.feed-header-area {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+/* Barra de Busca */
+.search-bar-container {
+  display: flex;
+  gap: 15px;
+  width: 100%;
+}
+
+.search-input-wrapper {
+  flex: 1;
+  background-color: #1e293b;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  border: 1px solid #334155;
+}
+
+.search-input-wrapper input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: white;
+  padding: 16px 0;
+  outline: none;
+  font-size: 1rem;
+}
+
+.btn-filter {
+  background-color: #1e293b;
+  border: 1px solid #334155;
+  color: #94a3b8;
+  width: 55px;
+  border-radius: 50px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  transition: 0.2s;
+}
+
+.btn-filter:hover {
+  border-color: #f97316;
+  color: #f97316;
+}
+
+/* Títulos do Feed */
+.feed-titles h2 {
+  font-size: 1.5rem;
+  margin-bottom: 5px;
+}
+
+.feed-titles p {
+  color: #94a3b8;
+  font-size: 0.95rem;
+}
+
+/* Cards de Vagas */
+.job-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.job-card {
+  background-color: #1e293b;
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: 1px solid transparent;
+}
+
+.job-card:hover {
+  transform: translateY(-2px);
+  border-color: #334155;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.job-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.job-card-header h3 {
+  font-size: 1.2rem;
+  margin-bottom: 4px;
+}
+
+.job-company {
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+
+.job-infos {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-size: 0.9rem;
+  color: #cbd5e1;
+  margin-top: 5px;
+}
+
+.job-price {
+  color: #f97316;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.job-tag {
+  align-self: flex-start;
+  background-color: rgba(249, 115, 22, 0.1);
+  color: #f97316;
+  padding: 6px 12px;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-top: 5px;
+}
+/* =========================================
+   6. DETALHES DA VAGA (Job Details)
+   ========================================= */
+.job-details-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-bottom: 100px; /* Espaço para não esconder o conteúdo atrás do botão fixo */
+}
+
+.job-header-top {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 10px;
+}
+
+.job-icon-large {
+  width: 60px;
+  height: 60px;
+  background-color: rgba(249, 115, 22, 0.1);
+  color: #f97316;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+}
+
+.job-tags {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.tag-green {
+  background-color: rgba(34, 197, 94, 0.1);
+  color: #22c55e;
+  padding: 6px 12px;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: 1px solid #22c55e;
+}
+
+/* Banner Laranja */
+.banner-price {
+  background-color: #f97316;
+  color: white;
+  padding: 30px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.banner-price span {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.banner-price h2 {
+  font-size: 3rem;
+  margin-top: 5px;
+}
+
+/* Cards com as 3 colunas */
+.info-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+.info-box {
+  background-color: #1e293b;
+  padding: 20px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+}
+
+.info-box span {
+  color: #f97316;
+  font-size: 1.5rem;
+}
+
+.info-box p {
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.info-box small {
+  color: #94a3b8;
+  font-size: 0.85rem;
+}
+
+/* Caixas de Texto */
+.content-section {
+  background-color: #1e293b;
+  padding: 30px;
+  border-radius: 16px;
+}
+
+.content-section h3 {
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+  color: white;
+}
+
+.content-section p {
+  color: #cbd5e1;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.req-list {
+  list-style: none;
+  color: #cbd5e1;
+  font-size: 0.95rem;
+}
+
+.req-list li {
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.req-list li::before {
+  content: '✓';
+  color: #22c55e;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+/* Botão Flutuante Inferior */
+.fixed-bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #0f172a;
+  padding: 20px;
+  border-top: 1px solid #1e293b;
+  display: flex;
+  justify-content: center;
+  z-index: 10;
+}
+
+.btn-candidatar {
+  width: 100%;
+  max-width: 800px;
+  background-color: #f97316;
+  color: white;
+  border: none;
+  padding: 18px;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-candidatar:hover {
+  background-color: #ea580c;
+}
+
+/* =========================================
+   7. TELA DE CADASTRO (ROLE SELECTION)
+   ========================================= */
+.role-selection-grid {
+  display: flex;
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.role-card {
+  background-color: #1e293b;
+  border: 2px solid transparent;
+  padding: 30px;
+  border-radius: 16px;
+  width: 280px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: left;
+}
+
+.role-card:hover, .role-card.active {
+  border-color: #f97316;
+  transform: translateY(-5px);
+}
+
+.role-icon {
+  background-color: rgba(249, 115, 22, 0.1);
+  color: #f97316;
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+.role-card h3 {
+  color: white;
+  margin-bottom: 10px;
+}
+
+.role-card p {
+  color: #94a3b8;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.role-card span {
+  color: #f97316;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+/* =========================================
+   8. MINHAS CANDIDATURAS (Freelancer)
+   ========================================= */
+.candidaturas-header {
+  margin-bottom: 30px;
+}
+
+.candidaturas-header h2 {
+  font-size: 1.5rem;
+  margin-bottom: 5px;
+}
+
+.candidaturas-header p {
+  color: #94a3b8;
+  font-size: 0.95rem;
+}
+
+/* Os 3 Cards de Status no Topo */
+.status-tabs {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.status-tab {
+  flex: 1;
+  background-color: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 12px;
+  padding: 15px;
+  text-align: center;
+}
+
+.status-tab h3 {
+  font-size: 1.5rem;
+  color: white;
+  margin-bottom: 5px;
+}
+
+.status-tab span {
+  color: #94a3b8;
+  font-size: 0.85rem;
+}
+
+/* Card da Lista de Candidaturas */
+.candidatura-card {
+  background-color: #1e293b;
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 15px;
+  border: 1px solid #334155;
+}
+
+.candidatura-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 15px;
+}
+
+.candidatura-info h3 {
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+}
+
+.candidatura-info p {
+  color: #94a3b8;
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+}
+
+.candidatura-price-date {
+  display: flex;
+  gap: 15px;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.candidatura-footer {
+  border-top: 1px solid #334155;
+  margin-top: 15px;
+  padding-top: 15px;
+  font-size: 0.8rem;
+  color: #64748b;
+}
+
+/* Cores das Etiquetas de Status */
+.badge-pendente {
+  background-color: rgba(234, 179, 8, 0.1);
+  color: #eab308;
+  border: 1px solid #eab308;
+}
+
+.badge-aprovado {
+  background-color: rgba(34, 197, 94, 0.1);
+  color: #22c55e;
+  border: 1px solid #22c55e;
+}
+
+.badge-recusado {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+  border: 1px solid #ef4444;
+}
+
+/* =========================================
+   9. MODAL DE CANDIDATOS (Dashboard da Empresa)
+   ========================================= */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  background-color: rgba(15, 23, 42, 0.85);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+}
+
+.modal-content {
+  background-color: #1e293b;
+  width: 100%; max-width: 600px;
+  border-radius: 16px;
+  border: 1px solid #334155;
+  display: flex; flex-direction: column;
+  max-height: 85vh;
+}
+
+.modal-header {
+  padding: 20px 24px;
+  border-bottom: 1px solid #334155;
+  display: flex; justify-content: space-between; align-items: center;
+}
+
+.modal-header h3 {
+  color: white; font-size: 1.2rem;
+}
+
+.btn-close {
+  background: transparent; border: none;
+  color: #94a3b8; font-size: 1.5rem; cursor: pointer;
+}
+
+.modal-body {
+  padding: 24px;
+  overflow-y: auto;
+  display: flex; flex-direction: column; gap: 15px;
+}
+
+.candidate-item {
+  background-color: #0f172a;
+  border: 1px solid #334155;
+  padding: 20px; border-radius: 12px;
+}
+
+.candidate-item-header {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.candidate-item h4 {
+  color: white; font-size: 1.1rem; margin-bottom: 4px;
+}
+
+.candidate-item p {
+  color: #94a3b8; font-size: 0.9rem;
+}
+
+.candidate-actions {
+  display: flex; gap: 10px; margin-top: 15px;
+  padding-top: 15px; border-top: 1px solid #1e293b;
+}
+
+.btn-aprovar {
+  background-color: rgba(34, 197, 94, 0.1);
+  color: #22c55e; border: 1px solid #22c55e;
+  padding: 8px 16px; border-radius: 8px; cursor: pointer; font-weight: bold; flex: 1; transition: 0.2s;
+}
+
+.btn-aprovar:hover { background-color: #22c55e; color: white; }
+
+.btn-recusar {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: #ef4444; border: 1px solid #ef4444;
+  padding: 8px 16px; border-radius: 8px; cursor: pointer; font-weight: bold; flex: 1; transition: 0.2s;
+}
+
+.btn-recusar:hover { background-color: #ef4444; color: white; }
