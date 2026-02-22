@@ -1,75 +1,51 @@
-## GoBicos
-Plataforma digital que simplifica a contratação de serviços pontuais ("bicos"), conectando estabelecimentos a prestadores de serviço de forma ágil.
+# GoBicos
 
-## CSI606-SISTEMAS-WEB-1-2025-01 - Proposta de Trabalho Final
-Discente: João Victor Teixeira Pereira
-Matrícula: 22.1.8052
+## Resumo
+O GoBicos é uma plataforma Full Stack desenvolvida para digitalizar e otimizar o mercado de trabalho informal e autônomo. O contexto do projeto surge da necessidade de conectar, de forma rápida e segura, contratantes (empresas ou pessoas físicas) que demandam serviços pontuais com freelancers disponíveis em suas respectivas regiões. A aplicação atua como uma ponte facilitadora, oferecendo não apenas a vitrine de vagas, mas também ferramentas de gestão de candidaturas, comunicação direta e construção de reputação profissional.
 
-## 0. Resumo
-Este trabalho propõe o desenvolvimento de um sistema web, "GoBicos", uma aplicação web full-stack projetada para otimizar o mercado informal de trabalhos pontuais. O sistema contará com autenticação de usuários e múltiplos perfis de acesso (Empresas e Freelancers), visando centralizar ofertas que hoje estão dispersas. A funcionalidade principal permitirá que stakeholders (donos de bares, restaurantes…etc) publiquem vagas de curta duração e que estudantes ou freelancers se candidatem de forma ágil. O sistema gerenciará o ciclo de vida da vaga, desde a publicação até o preenchimento, permitindo o cruzamento de dados entre a oferta e a demanda. 
+## 1. Funcionalidades implementadas
+* **Autenticação e Perfis de Usuário:** Sistema de login e cadastro com segregação de papéis (Empresa e Freelancer), além de painéis de edição de perfil e atualização de sessão em tempo real.
+* **Gestão de Vagas (CRUD):** Criação, edição, visualização e controle de status (aberta/fechada) de anúncios de bicos, exigindo dados precisos como valor, localização e intervalo de horário (início e término).
+* **Fluxo de Match e Candidatura:** Freelancers podem se candidatar a múltiplas vagas, enquanto as empresas gerenciam essas requisições por meio de um Dashboard, podendo aprovar ou recusar candidatos.
+* **Filtros e Integração Geográfica:** Consumo da API pública do IBGE para padronizar o cadastro de Estados e Municípios, garantindo um filtro de localização preciso e livre de erros de digitação no Feed de vagas.
+* **Busca Tolerante a Erros:** Implementação de algoritmos de string matching no backend para garantir que a busca por palavras-chave retorne resultados relevantes mesmo com pequenos erros ortográficos do usuário.
 
-## 1. Tema
-O trabalho final tem como tema o desenvolvimento de uma plataforma de empregabilidade focada em trabalhos informais temporários ("bicos"), incluindo autenticação de usuários com diferenciação de permissões, frontend, backend e um banco de dados relacional (PostgreSQL). O foco é aplicar conceitos de modelagem de dados complexa (relacionamentos N:N entre candidatos e vagas), gestão de estado no frontend e construção de APIs seguras.
+## 2. Funcionalidades previstas e não implementadas
+*(Nota: Você pode ajustar esta seção conforme a sua realidade, mas aqui estão ótimos exemplos do que costuma ficar para o "futuro" em MVPs).*
+* **Gateway de Pagamento Integrado:** Retenção e liberação de pagamentos (Escrow) diretamente pela plataforma para garantir a segurança financeira das partes.
+* **Notificações Push e E-mail:** Alertas automáticos no dispositivo do usuário quando uma nova mensagem for recebida no chat ou quando o status de uma candidatura mudar.
+* **Recuperação de Senha:** Fluxo de "Esqueci minha senha" utilizando envio de tokens temporários por e-mail.
 
-## 2. Escopo
-Este projeto terá as seguintes funcionalidades:
+## 3. Outras funcionalidades implementadas
+* **Chat Interno (Tempo Real):** Um canal de comunicação privado entre a empresa e o freelancer aprovado, implementado via *short polling* e com proteção de rota para garantir que apenas os envolvidos acessem as mensagens.
+* **Sistema de Reputação (Rating):** Sistema de avaliação mútua (1 a 5 estrelas) após a conclusão ou negociação do bico, com cálculo automático de média e exibição nos perfis.
+* **Navegação SPA Avançada:** Utilização de abas (Tabs) no Feed e botões padronizados para navegação fluida, minimizando o recarregamento de páginas e melhorando a experiência do usuário (UX).
 
-# Frontend:
+## 4. Principais desafios e dificuldades
+* **Padronização de Dados de Localização:** Substituir entradas de texto livre por uma integração confiável com a API do IBGE exigiu a criação de componentes React complexos e reaproveitáveis que gerenciassem estados dependentes (o carregamento de cidades dependendo do estado selecionado).
+* **Validações Estritas no Backend:** Lidar com regras de negócio no Laravel para atualizações parciais (ex: permitir pausar uma vaga sem que o framework exigisse o reenvio das datas de início e término) exigiu um aprofundamento nas regras de validação (`sometimes`).
+* **Sincronia e Layout do Chat:** Construir uma interface de chat responsiva, que mantivesse o scroll fixo nas mensagens mais recentes e que atualizasse o banco de dados frequentemente sem travar o navegador do cliente.
 
-* Páginas de Cadastro (Registro) e Login com distinção de perfil (Empresa ou Freelancer).
+## 5. Instruções para instalação e execução
 
-* Perfil Empresa:
+**Pré-requisitos:** Node.js, PHP 8.1+, Composer e PostgreSQL.
 
-* Dashboard para gerenciamento de vagas criadas.
+**Backend (Laravel):**
+1. Acesse a pasta `backend`.
+2. Instale as dependências: `composer install`.
+3. Configure o arquivo de ambiente: `cp .env.example .env` e `php artisan key:generate`.
+4. Configure as credenciais do PostgreSQL no arquivo `.env`.
+5. Rode as migrations: `php artisan migrate`.
+6. Inicie o servidor: `php artisan serve` (Rodará em `http://localhost:8000`).
 
-* Formulário para criação de novas vagas (título, valor, data, requisitos).
+**Frontend (React):**
+1. Acesse a pasta `frontend`.
+2. Instale as dependências: `npm install`.
+3. Inicie o servidor de desenvolvimento: `npm run dev`.
+4. Acesse a aplicação no navegador (Geralmente em `http://localhost:5173`).
 
-* Visualização de lista de candidatos por vaga, com opção de "Aceitar" ou "Rejeitar".
-
-* Perfil Freelancer:
-
-* Feed principal com listagem de vagas disponíveis e filtros (por valor ou data).
-
-* Página de "Meus Bicos", exibindo o status das candidaturas (Pendente, Aprovado, Recusado).
-
-* Botão de ação rápida "Candidatar-se".
-
-* Gerenciamento de estado global para persistência do usuário logado.
-
-# Backend (API):
-
-* Endpoints de autenticação (Registro, Login, Logout) com emissão de tokens.
-
-* Middlewares para proteção de rotas (garantir que apenas Empresas possam criar vagas).
-
-* Endpoints CRUD para Vagas.
-
-* Endpoint específico para candidatura que cria o vínculo entre usuário e vaga.
-
-* Lógica de negócios para impedir candidaturas duplicadas ou em vagas já fechadas.
-
-* Retorno de dados formatados em JSON para consumo do frontend.
-
-# Banco de Dados:
-
-* Tabela users: Armazena dados comuns e o tipo de perfil (role).
-
-* Tabela jobs: Armazena as vagas (título, descrição, valor, data, status, id_empresa).
-
-* Tabela job_applications: Tabela pivô para ligar freelancers a vagas, contendo campos de controle como status (pendente/aprovado) e created_at.
-
-* O banco de dados será pré-populado (via seeding) com usuários e vagas fictícias para fins de teste e apresentação.
-
-## 3. Restrições
-Neste trabalho não serão considerados:
-
-* Processamento de pagamentos dentro da plataforma (o pagamento do bico é externo).
-
-* Chat em tempo real entre empresa e freelancer.
-
-* Sistema de avaliação/review de usuários (estrelas).
-
-* Versão mobile nativa (apenas responsividade web).
-
-## 4. Protótipo
-### Os protótipos de interface estão sendo desenvolvidos na ferramenta Figma: https://www.figma.com/design/qHSOjQivQy6gsxSfBu6w3J/GoBicos-Kit-Design?node-id=0-1&t=UzQwN40RYpEiuRwg-1
+## 6. Referências
+* **React Documentation:** https://react.dev/
+* **Laravel Documentation:** https://laravel.com/docs
+* **API de Localidades do IBGE:** https://servicodados.ibge.gov.br/api/docs/localidades
+* **Documentação do PostgreSQL:** https://www.postgresql.org/docs/
