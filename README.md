@@ -1,7 +1,7 @@
 # GoBicos
 
 ## Resumo
-O GoBicos é uma plataforma Full Stack desenvolvida para digitalizar e otimizar o mercado de trabalho informal e autônomo. O contexto do projeto surge da necessidade de conectar, de forma rápida e segura, contratantes (empresas ou pessoas físicas) que demandam serviços pontuais com freelancers disponíveis em suas respectivas regiões. A aplicação atua como uma ponte facilitadora, oferecendo não apenas a vitrine de vagas, mas também ferramentas de gestão de candidaturas, comunicação direta e construção de reputação profissional.
+O GoBicos é uma plataforma Full Stack desenvolvida para digitalizar e otimizar o mercado de trabalho informal e autônomo. O contexto do projeto surge da necessidade de conectar, contratantes (empresas ou pessoas físicas) que demandam serviços pontuais com freelancers disponíveis em suas respectivas regiões. A aplicação atua como uma ponte facilitadora, oferecendo não apenas a vitrine de vagas, mas também ferramentas de gestão de candidaturas, comunicação direta e construção de reputação profissional.
 
 ## 1. Funcionalidades implementadas
 * **Autenticação e Perfis de Usuário:** Sistema de login e cadastro com segregação de papéis (Empresa e Freelancer), além de painéis de edição de perfil e atualização de sessão em tempo real.
@@ -10,16 +10,13 @@ O GoBicos é uma plataforma Full Stack desenvolvida para digitalizar e otimizar 
 * **Filtros e Integração Geográfica:** Consumo da API pública do IBGE para padronizar o cadastro de Estados e Municípios, garantindo um filtro de localização preciso e livre de erros de digitação no Feed de vagas.
 * **Busca Tolerante a Erros:** Implementação de algoritmos de string matching no backend para garantir que a busca por palavras-chave retorne resultados relevantes mesmo com pequenos erros ortográficos do usuário.
 
-## 2. Funcionalidades previstas e não implementadas
-*(Nota: Você pode ajustar esta seção conforme a sua realidade, mas aqui estão ótimos exemplos do que costuma ficar para o "futuro" em MVPs).*
-* **Gateway de Pagamento Integrado:** Retenção e liberação de pagamentos (Escrow) diretamente pela plataforma para garantir a segurança financeira das partes.
-* **Notificações Push e E-mail:** Alertas automáticos no dispositivo do usuário quando uma nova mensagem for recebida no chat ou quando o status de uma candidatura mudar.
-* **Recuperação de Senha:** Fluxo de "Esqueci minha senha" utilizando envio de tokens temporários por e-mail.
-
-## 3. Outras funcionalidades implementadas
+## 2. Funcionalidades não previstas que foram implementadas
 * **Chat Interno (Tempo Real):** Um canal de comunicação privado entre a empresa e o freelancer aprovado, implementado via *short polling* e com proteção de rota para garantir que apenas os envolvidos acessem as mensagens.
 * **Sistema de Reputação (Rating):** Sistema de avaliação mútua (1 a 5 estrelas) após a conclusão ou negociação do bico, com cálculo automático de média e exibição nos perfis.
-* **Navegação SPA Avançada:** Utilização de abas (Tabs) no Feed e botões padronizados para navegação fluida, minimizando o recarregamento de páginas e melhorando a experiência do usuário (UX).
+
+## 3. Funcionalidades não implementadas
+* Processamento de pagamentos dentro da plataforma (o pagamento do bico é externo).
+* Versão mobile nativa (apenas responsividade web).
 
 ## 4. Principais desafios e dificuldades
 * **Padronização de Dados de Localização:** Substituir entradas de texto livre por uma integração confiável com a API do IBGE exigiu a criação de componentes React complexos e reaproveitáveis que gerenciassem estados dependentes (o carregamento de cidades dependendo do estado selecionado).
