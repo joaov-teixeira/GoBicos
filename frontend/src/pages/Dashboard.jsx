@@ -123,7 +123,12 @@ function Dashboard() {
           </div>
           {showLogoutMenu && (
             <div style={{ position: 'absolute', top: '110%', right: '0', backgroundColor: '#1e293b', border: '1px solid #334155', borderRadius: '8px', padding: '8px 0', zIndex: 100, minWidth: '120px' }}>
-              <button onClick={handleLogout} style={{ background: 'transparent', border: 'none', color: '#ef4444', width: '100%', padding: '10px 16px', textAlign: 'left', cursor: 'pointer', fontWeight: '500' }}>🚪 Sair</button>
+              <button onClick={() => { navigate('/perfil'); setShowLogoutMenu(false); }} style={{ background: 'transparent', border: 'none', color: '#cbd5e1', width: '100%', padding: '10px 16px', textAlign: 'left', cursor: 'pointer', fontWeight: '500', display: 'block' }}>
+                👤 Meu Perfil
+              </button>
+              <button onClick={handleLogout} style={{ background: 'transparent', border: 'none', color: '#ef4444', width: '100%', padding: '10px 16px', textAlign: 'left', cursor: 'pointer', fontWeight: '500' }}>
+                🚪 Sair
+                </button>
             </div>
           )}
         </div>
@@ -190,11 +195,11 @@ function Dashboard() {
                         {/* BOTÃO PARA ABRIR O MODAL DE CANDIDATOS */}
                         <td>
                           <button 
+                            className="btn-ver-candidatos"
                             onClick={() => setVagaSelecionadaModal(vaga)}
-                            style={{ background: 'transparent', border: 'none', color: totalDestaVaga > 0 ? '#f97316' : '#94a3b8', cursor: totalDestaVaga > 0 ? 'pointer' : 'default', fontWeight: 'bold' }}
                             disabled={totalDestaVaga === 0}
                           >
-                            👥 {totalDestaVaga}
+                            {totalDestaVaga > 0 ? `Ver Candidatos 👥(${totalDestaVaga})` : 'Sem Candidatos'}
                           </button>
                         </td>
                         
@@ -232,7 +237,12 @@ function Dashboard() {
                 <div key={cand.id} className="candidate-item" style={{ borderLeft: cand.status === 'aprovada' ? '4px solid #22c55e' : cand.status === 'recusada' ? '4px solid #ef4444' : '4px solid #eab308' }}>
                   <div className="candidate-item-header">
                     <div>
-                      <h4>{cand.freelancer?.name || 'Freelancer'}</h4>
+                      <h4 style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                        {cand.freelancer?.name || 'Freelancer'}
+                        <span style={{ color: '#eab308', fontSize: '0.9rem', backgroundColor: 'rgba(234, 179, 8, 0.1)', padding: '2px 8px', borderRadius: '50px' }}>
+                          ⭐ {cand.freelancer?.nota_media > 0 ? cand.freelancer.nota_media : 'Novo'}
+                        </span>
+                      </h4>
                       <p>📍 {cand.freelancer?.localizacao || 'Sem localização'}</p>
                     </div>
                     {/* Etiqueta atual do candidato */}
@@ -245,13 +255,28 @@ function Dashboard() {
                     "{cand.freelancer?.sobre || 'Nenhuma descrição informada pelo candidato.'}"
                   </p>
 
-                  {/* Botões de Ação (só mostra se ainda estiver pendente) */}
-                  {cand.status === 'pendente' && (
+                  {/* Botões de Ação (Dinâmicos baseados no status) */}
+                  {cand.status === 'pendente' ? (
                     <div className="candidate-actions">
                       <button className="btn-aprovar" onClick={() => atualizarStatusCandidatura(cand.id, 'aprovada')}>✅ Aprovar</button>
                       <button className="btn-recusar" onClick={() => atualizarStatusCandidatura(cand.id, 'recusada')}>❌ Recusar</button>
                     </div>
-                  )}
+                  ) : cand.status === 'aprovada' ? (
+                    <div className="candidate-actions">
+                      <button 
+                        onClick={() => navigate(`/chat/${cand.id}`)}
+                        style={{
+                          backgroundColor: '#f97316', color: 'white', border: 'none', 
+                          padding: '10px 20px', borderRadius: '8px', cursor: 'pointer',
+                          fontWeight: 'bold', width: '100%', transition: '0.2s'
+                        }}
+                        onMouseEnter={(e) => e.target.style.backgroundColor = '#ea580c'}
+                        onMouseLeave={(e) => e.target.style.backgroundColor = '#f97316'}
+                      >
+                        💬 Falar com Candidato
+                      </button>
+                    </div>
+                  ) : null}
                 </div>
               ))}
             </div>

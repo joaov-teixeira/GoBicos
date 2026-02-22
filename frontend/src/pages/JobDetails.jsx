@@ -69,16 +69,19 @@ function JobDetails() {
 
   const formatarMoeda = (valor) => new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(valor);
   
-  // Extraindo Data e Hora separadamente para os cards
+  // Extraindo Data e Hora e horario de termino separadamente para os cards
   const dataObj = new Date(vaga.data_hora);
   const dataFormatada = dataObj.toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', year: 'numeric' });
   const horaFormatada = dataObj.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+  const horaTerminoFormatada = vaga.data_hora_termino 
+    ? new Date(vaga.data_hora_termino).toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })
+    : null;
 
   return (
     <div className="dashboard-layout">
       {/* HEADER SIMPLIFICADO */}
       <header className="navbar">
-        <button className="btn-voltar" onClick={() => navigate('/feed')}>
+        <button className="btn-voltar-pill" onClick={() => navigate('/feed')}>
           ← Voltar
         </button>
       </header>
@@ -90,7 +93,12 @@ function JobDetails() {
           <div>
             <h2 style={{ fontSize: '1.5rem', marginBottom: '5px' }}>{vaga.titulo}</h2>
             {/* NOME REAL DA EMPRESA */}
-            <p className="job-company">{vaga.empresa?.name || 'Empresa Confidencial'}</p>
+            <p className="job-company" style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+              {vaga.empresa?.name || 'Empresa'}
+              <span style={{ color: '#eab308', fontWeight: 'bold', backgroundColor: 'rgba(234, 179, 8, 0.1)', padding: '2px 8px', borderRadius: '50px', fontSize: '0.85rem' }}>
+                ⭐ {vaga.empresa?.nota_media > 0 ? vaga.empresa.nota_media : 'Novo na plataforma'}
+              </span>
+            </p>
             <div className="job-tags">
               <span className="job-tag" style={{margin: 0}}>Temporário</span>
               <span className="tag-green">Disponível</span>
@@ -106,22 +114,28 @@ function JobDetails() {
 
         {/* Grid de Informações (Data, Hora, Local) */}
         <div className="info-grid-3">
+          
+          {/* Caixa 1: Apenas a Data */}
           <div className="info-box">
             <span>📅</span>
             <small>Data</small>
             <p>{dataFormatada}</p>
           </div>
+          
+          {/* Caixa 2: O Horário de Início e Término */}
           <div className="info-box">
             <span>🕒</span>
             <small>Horário</small>
-            <p>{horaFormatada}</p>
+            <p>{horaFormatada} {horaTerminoFormatada ? ` - ${horaTerminoFormatada}` : ''}</p>
           </div>
+          
+          {/* Caixa 3: O Local */}
           <div className="info-box">
             <span>📍</span>
             <small>Local</small>
-            {/*PUXAR LOCAL REAL */}
             <p>{vaga.localizacao || 'A combinar'}</p> 
           </div>
+
         </div>
 
         {/* Descrição da Vaga */}
@@ -160,5 +174,4 @@ function JobDetails() {
     </div>
   );
 }
-
 export default JobDetails;

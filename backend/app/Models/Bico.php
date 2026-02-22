@@ -10,7 +10,7 @@ class Bico extends Model
     use HasFactory;
 
     protected $fillable = [
-        'titulo', 'descricao', 'valor', 'data_hora', 'status', 'empresa_id', 'localizacao', 'requisitos'
+        'titulo', 'descricao', 'valor', 'data_hora', 'data_hora_termino', 'status', 'empresa_id', 'localizacao', 'requisitos'
     ];
 
     // >>>> liga a vaga à empresa que a criou

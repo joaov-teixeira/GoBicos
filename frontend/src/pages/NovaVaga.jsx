@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import SelectLocalizacao from '../components/SelectLocalizacao';
 
 function NovaVaga() {
   const navigate = useNavigate();
@@ -9,7 +10,8 @@ function NovaVaga() {
     titulo: '', 
     descricao: '', 
     valor: '', 
-    data_hora: '', 
+    data_hora: '',
+    data_hora_termino: '',
     localizacao: '', 
     requisitos: '' 
   });
@@ -66,8 +68,11 @@ function NovaVaga() {
 
             {/*Localização */}
             <div className="input-group">
-              <label>Sua Cidade / Região (Local da Vaga)</label>
-              <input type="text" name="localizacao" value={formData.localizacao} onChange={handleChange} placeholder="Ex: São Paulo, SP" required />
+              <label>Localização da Vaga</label>
+              <SelectLocalizacao 
+                value={formData.localizacao} 
+                onChange={(novoValor) => setFormData({ ...formData, localizacao: novoValor })} 
+              />
             </div>
             
             <div className="input-group">
@@ -82,15 +87,21 @@ function NovaVaga() {
             </div>
             
             {/* Colocando Valor e Data lado a lado */}
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px' }}>
+            {/* Grid com 3 colunas para Valor, Início e Término */}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '15px' }}>
               <div className="input-group">
                 <label>Pagamento (R$)</label>
                 <input type="number" name="valor" value={formData.valor} onChange={handleChange} placeholder="150.00" step="0.01" required />
               </div>
               
               <div className="input-group">
-                <label>Data e Hora</label>
-                <input type="datetime-local" name="data_hora" value={formData.data_hora} onChange={handleChange} required />
+                <label>Início (Data e Hora)</label>
+                <input type="datetime-local" name="data_hora"  value={formData.data_hora} onChange={handleChange} required />
+              </div>
+
+              <div className="input-group">
+                <label>Término (Data e Hora)</label>
+                <input type="datetime-local" name="data_hora_termino" value={formData.data_hora_termino} onChange={handleChange} required />
               </div>
             </div>
             

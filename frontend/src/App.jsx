@@ -8,6 +8,8 @@ import Feed from './pages/Feed';
 import JobDetails from './pages/JobDetails';
 import Cadastro from './pages/Cadastro';
 import MinhasCandidaturas from './pages/MinhasCandidaturas';
+import Chat from './pages/Chat';
+import Perfil from './pages/Perfil';
 
 function App() {
   return (
@@ -23,6 +25,8 @@ function App() {
         <Route path="/vaga/:id" element={<JobDetails />} />
         <Route path="/cadastro" element={<Cadastro />} />
         <Route path="/minhas-candidaturas" element={<MinhasCandidaturas />} />
+        <Route path="/chat/:id" element={<Chat />} />
+        <Route path="/perfil" element={<Perfil />} />
       </Routes>
     </Router>
   );

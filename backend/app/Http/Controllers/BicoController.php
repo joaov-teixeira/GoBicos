@@ -7,10 +7,35 @@ use Illuminate\Http\Request;
 
 class BicoController extends Controller
 {
-    // 1. Retorna todas as vagas
-    public function index()
+    // 1. Retorna as vagas aplicando algoritmo de String Matching se houver busca
+    public function index(Request $request)
     {
-        return Bico::with('empresa')->get();
+        $query = Bico::with('empresa');
+        $bicos = $query->get();
+
+        // Se o frontend enviar um termo de busca, aplicamos a lógica de similaridade
+        if ($request->has('search') && $request->search !== '') {
+            $termo = strtolower(trim($request->search));
+            $bicos = $bicos->filter(function($bico) use ($termo) {
+                $titulo = strtolower($bico->titulo);
+                $descricao = strtolower($bico->descricao);
+
+                // 1. Match Exato (Substring): Se a palavra exata estiver lá, é match imediato
+                if (str_contains($titulo, $termo) || str_contains($descricao, $termo)) {
+                    return true;
+                }
+
+                // 2. Algoritmo de Similaridade de Strings
+                // Calcula o percentual de semelhança entre o que foi digitado e o título/descrição
+                similar_text($termo, $titulo, $percTitulo);
+                similar_text($termo, $descricao, $percDesc);
+
+                // Se houver 40% ou mais de similaridade, o algoritmo considera como match>> "faxina" x "faxineira"
+                return $percTitulo >= 40 || $percDesc >= 40;
+            })->values(); // Reorganiza os índices do array
+        }
+
+        return response()->json($bicos);
     }
 
     // 2. Salva uma nova vaga
@@ -24,7 +49,8 @@ class BicoController extends Controller
             'data_hora' => 'required|date',
             'empresa_id' => 'required|exists:users,id',
             'localizacao' => 'required|string', // campo obrigatório
-            'requisitos' => 'nullable|string'   // campo opcional
+            'requisitos' => 'nullable|string',   // campo opcional
+            'data_hora_termino' => 'required|date|after:data_hora',
         ]);
 
         $bico = Bico::create($request->all());
@@ -57,7 +83,8 @@ class BicoController extends Controller
             'data_hora' => 'sometimes|required|date',
             'status' => 'sometimes|required|in:aberta,fechada',
             'localizacao' => 'sometimes|required|string',
-            'requisitos' => 'nullable|string'
+            'requisitos' => 'nullable|string',
+            'data_hora_termino' => 'sometimes|required|date|after:data_hora',
         ]);
 
         $bico->update($request->all());

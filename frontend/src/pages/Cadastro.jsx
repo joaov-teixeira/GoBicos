@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import SelectLocalizacao from '../components/SelectLocalizacao';
 
 function Cadastro() {
   const navigate = useNavigate();
@@ -92,7 +93,10 @@ function Cadastro() {
 
               <div className="input-group">
                 <label>Sua Cidade / Região</label>
-                <input type="text" name="localizacao" placeholder="Ex: São Paulo, SP" value={formData.localizacao} onChange={handleChange} required />
+                <SelectLocalizacao 
+                value={formData.localizacao} 
+                onChange={(novoValor) => setFormData({ ...formData, localizacao: novoValor })} 
+                />
               </div>
 
               <div className="input-group">

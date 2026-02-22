@@ -34,3 +34,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::put('/candidaturas/{id}', [App\Http\Controllers\CandidaturaController::class, 'update']);
+Route::get('/candidaturas/{id}/mensagens', [App\Http\Controllers\MensagemController::class, 'index']);
+Route::post('/candidaturas/{id}/mensagens', [App\Http\Controllers\MensagemController::class, 'store']);
+Route::post('/avaliacoes', [App\Http\Controllers\AvaliacaoController::class, 'store']);
+Route::put('/users/{id}', [App\Http\Controllers\UserController::class, 'update']);
